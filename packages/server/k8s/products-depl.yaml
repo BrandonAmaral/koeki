@@ -1,32 +1,30 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: web-depl
+  name: products-depl
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: web
+      app: products
   template:
     metadata:
       labels:
-        app: web
+        app: products
     spec:
       containers:
-        - name: web
-          image: koeki/web
-
+        - name: products
+          image: koeki/products
 ---
-
 apiVersion: v1
 kind: Service
 metadata:
-  name: web-srv
+  name: products-srv
 spec:
   selector:
-    app: web
+    app: products
   ports:
     - port: 3000
-      name: web
+      name: products
       protocol: TCP
       targetPort: 3000

@@ -3,7 +3,7 @@ kind: Config
 deploy:
   kubectl:
     manifests:
-      - ./packages/server/infra/k8s/*
+      - ./packages/server/k8s/*
 build:
   local:
     push: false
@@ -17,7 +17,7 @@ build:
           - src: 'src/**/*.ts'
             dest: .
     - image: koeki/users
-      context: packages/server/services/users
+      context: packages/server/modules/users
       docker:
         dockerfile: Dockerfile
       sync:
@@ -25,7 +25,7 @@ build:
           - src: 'src/**/*.ts'
             dest: .
     - image: koeki/products
-      context: packages/server/services/products
+      context: packages/server/modules/products
       docker:
         dockerfile: Dockerfile
       sync:

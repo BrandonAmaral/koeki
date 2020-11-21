@@ -3,5 +3,3 @@ build/
 .idea/
 .vscode/
 temp/
-tmp/*
-!tmp/.gitkeep

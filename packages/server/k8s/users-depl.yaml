@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: users-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: users
+  template:
+    metadata:
+      labels:
+        app: users
+    spec:
+      containers:
+        - name: users
+          image: koeki/users
+          env:
+            - name: MONGO_URI
+              value: 'mongodb://users-mongo-srv:27017/db'
+            - name: JWT_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: koeki-secret
+                  key: JWT_KEY
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: users-srv
+spec:
+  selector:
+    app: users
+  ports:
+    - port: 3000
+      name: users
+      protocol: TCP
+      targetPort: 3000
