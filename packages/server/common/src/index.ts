@@ -1,6 +1,3 @@
-export * from './config/auth';
-export * from './config/mongo';
-
 export * from './errors/BadRequestError';
 export * from './errors/NotAuthorizedError';
 

@@ -10,7 +10,7 @@ signIn.post('/api/users/signin', async (request, response) => {
     const { email, password } = request.body;
 
     const authUser = new AuthUserService();
-    const { user, token } = await authUser.execute({
+    const { user } = await authUser.execute({
       email,
       password,
     });
@@ -27,7 +27,7 @@ signIn.post('/api/users/signin', async (request, response) => {
       jwt: userJwt,
     };
 
-    return response.json({ user, token });
+    return response.json(user);
   } catch (err) {
     return response.status(err.statusCode).json({ error: err.error });
   }

@@ -11,7 +11,6 @@ interface Request {
 
 interface Response {
   user: UserDocument;
-  token: string;
 }
 
 class AuthenticateUserService {
@@ -30,18 +29,7 @@ class AuthenticateUserService {
       throw new BadRequestError('Invalid credentials');
     }
 
-    const token = sign(
-      {
-        id: user._id,
-        email: user.email,
-      },
-      process.env.JWT_KEY!,
-    );
-
-    return {
-      user,
-      token,
-    };
+    return { user };
   }
 }
 
