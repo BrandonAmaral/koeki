@@ -1,5 +1,4 @@
 import { compare } from 'bcryptjs';
-import { sign } from 'jsonwebtoken';
 
 import { BadRequestError } from '@koeki/common';
 import User, { UserDocument } from '../schemas/User';

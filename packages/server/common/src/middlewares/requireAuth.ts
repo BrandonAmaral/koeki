@@ -7,7 +7,7 @@ export function requireAuth(
   next: NextFunction,
 ): void {
   if (!request.userInfo) {
-    throw new NotAuthorizedError('Not authorized');
+    throw new NotAuthorizedError();
   }
 
   next();

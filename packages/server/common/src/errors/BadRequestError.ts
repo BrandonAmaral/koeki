@@ -1,10 +1,15 @@
-export class BadRequestError {
-  public readonly error: string;
+import { CustomError } from './CustomError';
 
-  public readonly statusCode: number;
+export class BadRequestError extends CustomError {
+  statusCode = 400;
 
-  constructor(error: string, statusCode = 400) {
-    this.error = error;
-    this.statusCode = statusCode;
+  constructor(public message: string) {
+    super(message);
+
+    Object.setPrototypeOf(this, BadRequestError.prototype);
+  }
+
+  serializeErrors() {
+    return [{ message: this.message }];
   }
 }

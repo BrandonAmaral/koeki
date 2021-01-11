@@ -15,6 +15,14 @@ spec:
       containers:
         - name: products
           image: koeki/products
+          env:
+            - name: MONGO_URI
+              value: 'mongodb://users-mongo-srv:27017/products'
+            - name: JWT_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: koeki-secret
+                  key: JWT_KEY
 ---
 apiVersion: v1
 kind: Service
